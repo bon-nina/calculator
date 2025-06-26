@@ -62,6 +62,12 @@ resultBtn.addEventListener("click", () => {
     }
 });
 
+const decimalBtn = document.querySelector("#decimal-btn");
+decimalBtn.addEventListener("click", () => {
+    if (isDecimal() === false) {
+        assignNumbers("."); 
+    }
+});
 
 
 function operate (operator,num1, num2) {
@@ -114,7 +120,7 @@ const calculation = {
 
 function assignNumbers (num) {
     input += `${num}`;
-    latestNum = parseInt(input);
+    latestNum = Number(input);
     display.textContent = input;
 }
 
@@ -153,7 +159,7 @@ function deleteOne() {
                   .slice(0,-1)
                   .join("");
         display.textContent = str;
-        latestNum = parseInt(str);
+        latestNum = Number(str);
         console.log(latestNum);
         }
         else if (str.length == 1) {
@@ -162,3 +168,9 @@ function deleteOne() {
         }
      }
 }
+
+function isDecimal () {
+    let str = (`${latestNum}`).split("");
+    let alreadyDecimal = str.includes(".");
+    return alreadyDecimal;
+}   
