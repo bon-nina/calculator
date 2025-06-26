@@ -1,8 +1,7 @@
 let input = "";
-let latestNum = null;
-let storageNum = null;
-let operator = null;
-let displayContent = "";
+let latestNum = undefined;
+let storageNum = undefined;
+let operator = undefined;
 
 
 const display = document.querySelector(".display");
@@ -54,7 +53,11 @@ const subtractBtn = document.querySelector("#subtract-btn");
 subtractBtn.addEventListener("click", () => assignOperators("-"));
 
 const resultBtn = document.querySelector("#result-btn");
-resultBtn.addEventListener("click", () => operate(operator, storageNum, latestNum));
+resultBtn.addEventListener("click", () => {
+    if( storageNum !== undefined && latestNum!== undefined) {
+    operate(operator, storageNum, latestNum);
+    }
+});
 
 
 
@@ -74,15 +77,11 @@ function operate (operator,num1, num2) {
    }
    else { result = latestNum; }
 
-   operator = null;
+   operator = undefined;
    display.textContent = result;
    latestNum = result;
-   storageNum = null
+   storageNum = undefined;
    input = "";
-   console.log(latestNum);
-   console.log(storageNum);
-   console.log(input);
-   console.log(operator);
 }
 
 const calculation = {
@@ -111,28 +110,34 @@ const calculation = {
 function assignNumbers (num) {
     input += `${num}`;
     latestNum = parseInt(input);
-    displayContent = input;
-    display.textContent = displayContent;
+    display.textContent = input;
 }
 
 function assignOperators (symbol)  {
-    if (storageNum !== null) {
-        operate(operator,storageNum,latestNum);
+    if (operator !== undefined){
+        operator = symbol;
     }
-    operator = symbol;
-    storageNum = latestNum;
-    latestNum = 0;
+    else if (operator == undefined && storageNum !== undefined) {
+        operate(operator,storageNum,latestNum);
+        storageNum = latestNum;
+        latestNum = undefined;
+        operator = symbol;
+    }
+    else {
+        storageNum = latestNum;
+        latestNum = undefined;
+        operator = symbol;
+    }
     input = "";
-    displayContent = input;
+    display.textContent = input;
 }
 
 function clearAll () {
     input = "";
-    latestNum = null;
-    storageNum = null;
-    operator = null;
-    displayContent = "";
-    display.textContent = displayContent;
+    latestNum = undefined;
+    storageNum = undefined;
+    operator = undefined;
+    display.textContent = input;
 }
 
 function deleteOne() {
