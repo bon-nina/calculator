@@ -1,6 +1,6 @@
 let input = "";
-let number1 = 0;
-let number2 = 0;
+let latestNum;
+let storageNum;
 let operator = "";
 let displayContent = "";
 
@@ -42,7 +42,7 @@ const btn9 = document.querySelector("#nine-btn");
 btn9.addEventListener("click", () => assignNumbers(9));
 
 const multiplyBtn = document.querySelector("#multiply-btn");
-multiplyBtn.addEventListener("click", () => assignVariables("*"));
+multiplyBtn.addEventListener("click", () => assignOperators("*"));
 
 const divideBtn = document.querySelector("#divide-btn");
 divideBtn.addEventListener("click", () => assignOperators("/"));
@@ -54,23 +54,28 @@ const subtractBtn = document.querySelector("#subtract-btn");
 subtractBtn.addEventListener("click", () => assignOperators("-"));
 
 const resultBtn = document.querySelector("#result-btn");
-resultBtn.addEventListener("click", () => operate(operator,number1,number2));
+resultBtn.addEventListener("click", () => operate(operator, storageNum, latestNum));
 
 
 
 function operate (operator,num1, num2) {
    if (operator == "+") {
-        return calculation.add(num1,num2);
+        latestNum = calculation.add(num1,num2);
    }
    else if (operator == "-") {
-        return calculation.subtract(num1,num2);
+        latestNum = calculation.subtract(num1,num2);
    }
    else if (operator == "*") {
-        return calculation.multiply(num1,num2);
+        latestNum = calculation.multiply(num1,num2);
    }
    else if (operator == "/") {
-        return calculation.divide(num1,num2);
+        latestNum = calculation.divide(num1,num2);
    }
+   input = `${latestNum}`;
+   display.textContent = latestNum;
+   storageNum = latestNum;
+   input = "";
+   operator = "";
 }
 
 const calculation = {
@@ -98,13 +103,17 @@ const calculation = {
 
 function assignNumbers (num) {
     input += `${num}`;
-    number1 = parseInt(input);
+    latestNum = parseInt(input);
     displayContent = input;
     display.textContent = displayContent;
 }
 
-function assignOperators ()  {
-
+function assignOperators (symbol)  {
+    operator = symbol;
+    storageNum = latestNum;
+    latestNum = 0;
+    input = "";
+    displayContent = input;
 }
 
 function clearAll () {
