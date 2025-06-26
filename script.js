@@ -13,6 +13,9 @@ acBtn.addEventListener("click", () => clearAll());
 const delBtn = document.querySelector("#del-btn");
 delBtn.addEventListener("click", () => deleteOne());
 
+const btn0 = document.querySelector("#zero-btn");
+btn0.addEventListener("click", () => assignNumbers(0));
+
 const btn1 = document.querySelector("#one-btn");
 btn1.addEventListener("click", () => assignNumbers(1));
 
@@ -65,17 +68,25 @@ function operate (operator,num1, num2) {
     let result;
    if (operator === "+") {
         result = calculation.add(num1,num2);
+        result = Math.round(result*10000)/10000;
    }
    else if (operator === "-") {
         result = calculation.subtract(num1,num2);
+        result = Math.round(result*10000)/10000;
    }
    else if (operator === "*") {
         result = calculation.multiply(num1,num2);
+        result = Math.round(result*10000)/10000;
    }
    else if (operator === "/") {
-        result = calculation.divide(num1,num2);
+        if (num2 !== 0) {
+                result = calculation.divide(num1,num2);
+                result = Math.round(result*10000)/10000;
+            }
+        else {    
+                result = "ERROR -  can't divide by 0" ;
+            }
    }
-   result = Math.round(result*10000)/10000;
    operator = undefined;
    display.textContent = result;
    latestNum = result;
@@ -97,12 +108,7 @@ const calculation = {
         },
 
         divide: function(num1,num2) {
-            if (num2 != 0) {
                 return (num1 / num2);
-            }
-            else {
-                return "ERROR - can't divide by 0";
-            }
         },
 }
 
