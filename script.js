@@ -75,13 +75,12 @@ function operate (operator,num1, num2) {
    else if (operator === "/") {
         result = calculation.divide(num1,num2);
    }
+   result = Math.round(result*10000)/10000;
    operator = undefined;
    display.textContent = result;
    latestNum = result;
    storageNum = undefined;
    input = "";
-   console.log(latestNum);
-   console.log(storageNum);
 }
 
 const calculation = {
@@ -111,8 +110,6 @@ function assignNumbers (num) {
     input += `${num}`;
     latestNum = parseInt(input);
     display.textContent = input;
-    console.log(latestNum);
-    console.log(storageNum);
 }
 
 function assignOperators (symbol)  {
@@ -132,8 +129,6 @@ function assignOperators (symbol)  {
     }
     input = "";
     display.textContent = input;
-    console.log(latestNum);
-    console.log(storageNum);
 }
 
 function clearAll () {
