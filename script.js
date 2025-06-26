@@ -1,7 +1,8 @@
-let number1;
-let number2;
-let operator;
-let displayContent;
+let input = "";
+let number1 = 0;
+let number2 = 0;
+let operator = "";
+let displayContent = "";
 
 
 const display = document.querySelector(".display");
@@ -14,43 +15,43 @@ const delBtn = document.querySelector("#del-btn");
 delBtn.addEventListener("click", () => deleteOne());
 
 const btn1 = document.querySelector("#one-btn");
-btn1.addEventListener("click", () => assignVariables(1));
+btn1.addEventListener("click", () => assignNumbers(1));
 
 const btn2 = document.querySelector("#two-btn");
-btn2.addEventListener("click", () => assignVariables(2));
+btn2.addEventListener("click", () => assignNumbers(2));
 
 const btn3 = document.querySelector("#three-btn");
-btn3.addEventListener("click", () => assignVariables(3));
+btn3.addEventListener("click", () => assignNumbers(3));
 
 const btn4 = document.querySelector("#four-btn");
-btn4.addEventListener("click", () => assignVariables(4));
+btn4.addEventListener("click", () => assignNumbers(4));
 
 const btn5 = document.querySelector("#five-btn");
-btn5.addEventListener("click", () => assignVariables(5));
+btn5.addEventListener("click", () => assignNumbers(5));
 
 const btn6 = document.querySelector("#six-btn");
-btn6.addEventListener("click", () => assignVariables(6));
+btn6.addEventListener("click", () => assignNumbers(6));
 
 const btn7 = document.querySelector("#seven-btn");
-btn7.addEventListener("click", () => assignVariables(7));
+btn7.addEventListener("click", () => assignNumbers(7));
 
 const btn8 = document.querySelector("#eight-btn");
-btn8.addEventListener("click", () => assignVariables(8));
+btn8.addEventListener("click", () => assignNumbers(8));
 
 const btn9 = document.querySelector("#nine-btn");
-btn9.addEventListener("click", () => assignVariables(9));
+btn9.addEventListener("click", () => assignNumbers(9));
 
 const multiplyBtn = document.querySelector("#multiply-btn");
 multiplyBtn.addEventListener("click", () => assignVariables("*"));
 
 const divideBtn = document.querySelector("#divide-btn");
-divideBtn.addEventListener("click", () => assignVariables("/"));
+divideBtn.addEventListener("click", () => assignOperators("/"));
 
-const addBtn = document.querySelector("#addbtn");
-addBtn.addEventListener("click", () => assignVariables("+"));
+const addBtn = document.querySelector("#add-btn");
+addBtn.addEventListener("click", () => assignOperators("+"));
 
 const subtractBtn = document.querySelector("#subtract-btn");
-subtractBtn.addEventListener("click", () => assignVariables("-"));
+subtractBtn.addEventListener("click", () => assignOperators("-"));
 
 const resultBtn = document.querySelector("#result-btn");
 resultBtn.addEventListener("click", () => operate(operator,number1,number2));
@@ -95,8 +96,14 @@ const calculation = {
         },
 }
 
-function assignVariables () {
+function assignNumbers (num) {
+    input += `${num}`;
+    number1 = parseInt(input);
+    displayContent = input;
+    display.textContent = displayContent;
+}
 
+function assignOperators ()  {
 
 }
 
