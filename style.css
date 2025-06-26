@@ -54,7 +54,7 @@ h1 {
     background-image: linear-gradient(rgb(243, 236, 198), beige);
     border-radius: 10px;
     padding: 15px;
-    font-size: 36px;
+    font-size: 40px;
 }
 
 button {
@@ -65,6 +65,11 @@ button {
     border-color: rgb(150, 150, 218);
     background-color: rgb(249, 240, 201);
 }
+
+button:hover {
+    background-color: rgb(243, 229, 190);
+}
+
 footer {
     display: flex;
     justify-content: center;
