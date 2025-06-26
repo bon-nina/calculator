@@ -75,13 +75,13 @@ function operate (operator,num1, num2) {
    else if (operator === "/") {
         result = calculation.divide(num1,num2);
    }
-   else { result = latestNum; }
-
    operator = undefined;
    display.textContent = result;
    latestNum = result;
    storageNum = undefined;
    input = "";
+   console.log(latestNum);
+   console.log(storageNum);
 }
 
 const calculation = {
@@ -111,25 +111,29 @@ function assignNumbers (num) {
     input += `${num}`;
     latestNum = parseInt(input);
     display.textContent = input;
+    console.log(latestNum);
+    console.log(storageNum);
 }
 
 function assignOperators (symbol)  {
     if (operator !== undefined){
         operator = symbol;
     }
-    else if (operator == undefined && storageNum !== undefined) {
+    else if (operator === undefined && storageNum !== undefined) {
         operate(operator,storageNum,latestNum);
-        storageNum = latestNum;
-        latestNum = undefined;
         operator = symbol;
     }
     else {
+        operator = symbol;
+    }
+    if (latestNum !== undefined) {
         storageNum = latestNum;
         latestNum = undefined;
-        operator = symbol;
     }
     input = "";
     display.textContent = input;
+    console.log(latestNum);
+    console.log(storageNum);
 }
 
 function clearAll () {
