@@ -74,6 +74,7 @@ function operate (operator,num1, num2) {
    input = `${latestNum}`;
    display.textContent = latestNum;
    storageNum = latestNum;
+   latestNum = 0;
    input = "";
    operator = "";
 }
@@ -117,8 +118,12 @@ function assignOperators (symbol)  {
 }
 
 function clearAll () {
-
-
+    input = "";
+    latestNum = null;
+    storageNum = null;
+    operator = "";
+    displayContent = "";
+    display.textContent = displayContent;
 }
 
 function deleteOne() {
