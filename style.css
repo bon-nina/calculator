@@ -3,6 +3,7 @@
     padding: 0px;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
 }
 
 body {
@@ -20,6 +21,7 @@ header {
 
 h1 {
     color: beige;
+    font-size: 36px;
 }
 
 .content {
@@ -31,13 +33,33 @@ h1 {
 }
 
 .calculator {
-    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 680px;
     width: 400px;
     border: 3px solid rgb(136, 136, 204);
     border-radius: 10px;
     background-color: rgb(212, 212, 241);
 }
 
+.display {
+    height: 200px;
+    width: 350px;
+    border: 2px solid rgb(161, 161, 161);
+    background-image: linear-gradient(rgb(243, 236, 198), beige);
+    border-radius: 10px;
+}
+
+button {
+    width: 80px;
+    height: 60px;
+    margin: 10px 0px;
+    border-radius: 10px;
+    border-color: rgb(150, 150, 218);
+    background-color: rgb(249, 240, 201);
+}
 footer {
     display: flex;
     justify-content: center;
