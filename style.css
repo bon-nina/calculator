@@ -45,11 +45,16 @@ h1 {
 }
 
 .display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     height: 200px;
     width: 350px;
     border: 2px solid rgb(161, 161, 161);
     background-image: linear-gradient(rgb(243, 236, 198), beige);
     border-radius: 10px;
+    padding: 15px;
+    font-size: 36px;
 }
 
 button {

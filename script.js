@@ -1,7 +1,7 @@
 let input = "";
-let latestNum;
-let storageNum;
-let operator = "";
+let latestNum = null;
+let storageNum = null;
+let operator = null;
 let displayContent = "";
 
 
@@ -59,24 +59,30 @@ resultBtn.addEventListener("click", () => operate(operator, storageNum, latestNu
 
 
 function operate (operator,num1, num2) {
-   if (operator == "+") {
-        latestNum = calculation.add(num1,num2);
+    let result;
+   if (operator === "+") {
+        result = calculation.add(num1,num2);
    }
-   else if (operator == "-") {
-        latestNum = calculation.subtract(num1,num2);
+   else if (operator === "-") {
+        result = calculation.subtract(num1,num2);
    }
-   else if (operator == "*") {
-        latestNum = calculation.multiply(num1,num2);
+   else if (operator === "*") {
+        result = calculation.multiply(num1,num2);
    }
-   else if (operator == "/") {
-        latestNum = calculation.divide(num1,num2);
+   else if (operator === "/") {
+        result = calculation.divide(num1,num2);
    }
-   input = `${latestNum}`;
-   display.textContent = latestNum;
-   storageNum = latestNum;
-   latestNum = 0;
+   else { result = latestNum; }
+
+   operator = null;
+   display.textContent = result;
+   latestNum = result;
+   storageNum = null
    input = "";
-   operator = "";
+   console.log(latestNum);
+   console.log(storageNum);
+   console.log(input);
+   console.log(operator);
 }
 
 const calculation = {
@@ -110,6 +116,9 @@ function assignNumbers (num) {
 }
 
 function assignOperators (symbol)  {
+    if (storageNum !== null) {
+        operate(operator,storageNum,latestNum);
+    }
     operator = symbol;
     storageNum = latestNum;
     latestNum = 0;
@@ -121,7 +130,7 @@ function clearAll () {
     input = "";
     latestNum = null;
     storageNum = null;
-    operator = "";
+    operator = null;
     displayContent = "";
     display.textContent = displayContent;
 }
