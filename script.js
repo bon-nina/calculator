@@ -80,11 +80,11 @@ function operate (operator,num1, num2) {
    }
    else if (operator === "/") {
         if (num2 !== 0) {
-                result = calculation.divide(num1,num2);
-                result = Math.round(result*10000)/10000;
+            result = calculation.divide(num1,num2);
+            result = Math.round(result*10000)/10000;
             }
         else {    
-                result = "ERROR -  can't divide by 0" ;
+            result = "ERROR -  can't divide by 0" ;
             }
    }
    operator = undefined;
@@ -146,5 +146,19 @@ function clearAll () {
 }
 
 function deleteOne() {
-
+    if (latestNum !== undefined) {
+        let str = (`${latestNum}`);
+        if (str.length >1) {
+         str = str.split("")
+                  .slice(0,-1)
+                  .join("");
+        display.textContent = str;
+        latestNum = parseInt(str);
+        console.log(latestNum);
+        }
+        else if (str.length == 1) {
+            latestNum = undefined;
+        display.textContent = "";
+        }
+     }
 }
