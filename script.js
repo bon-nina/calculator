@@ -59,7 +59,6 @@ const resultBtn = document.querySelector("#result-btn");
 resultBtn.addEventListener("click", () => {
     if( !storageNum == false && !latestNum == false) {
     operate(operator, storageNum, latestNum);
-    console.log("here");
     }
 });
 
@@ -130,23 +129,16 @@ function assignNumbers (num) {
 function assignOperators (symbol)  {
     if (!operator == false && !storageNum == false && !latestNum == false){
          operate(operator,storageNum,latestNum);
-         console.log("or here");
     }
-    else if (!operator && !storageNum == false) {
-        console.log("now here");
-    }
-    else if (!operator == false) { 
-        console.log("meeh here");}
+    else if (!operator && !storageNum == false) {}
+    else if (!operator == false) {}
     else {
-        console.log(storageNum,latestNum);
         storageNum = latestNum;
         latestNum = null;
-        console.log("its here");
     }
     operator = symbol;
     input = "";
     display.textContent = input;
-    console.log(storageNum,latestNum);
 }
 
 function clearAll () {
@@ -167,7 +159,6 @@ function deleteOne() {
         display.textContent = str;
         latestNum = Number(str);
         input = `${latestNum}`;
-        console.log(latestNum);
         }
         else if (str.length == 1) {
             latestNum = null;
