@@ -1,7 +1,7 @@
 let input = "";
-let latestNum = undefined;
-let storageNum = undefined;
-let operator = undefined;
+let latestNum = null;
+let storageNum = null;
+let operator = null;
 
 
 const display = document.querySelector(".display");
@@ -57,8 +57,9 @@ subtractBtn.addEventListener("click", () => assignOperators("-"));
 
 const resultBtn = document.querySelector("#result-btn");
 resultBtn.addEventListener("click", () => {
-    if( storageNum !== undefined && latestNum!== undefined) {
+    if( storageNum !== null && latestNum!== null) {
     operate(operator, storageNum, latestNum);
+    console.log("here");
     }
 });
 
@@ -93,11 +94,12 @@ function operate (operator,num1, num2) {
             result = "ERROR -  can't divide by 0" ;
             }
    }
-   operator = undefined;
+   operator = null;
    display.textContent = result;
-   latestNum = result;
-   storageNum = undefined;
+   latestNum = null;
+   storageNum = result;
    input = "";
+   console.log(operator,latestNum,storageNum, result);
 }
 
 const calculation = {
@@ -122,37 +124,41 @@ function assignNumbers (num) {
     input += `${num}`;
     latestNum = Number(input);
     display.textContent = input;
+    console.log(storageNum,latestNum);
 }
 
 function assignOperators (symbol)  {
-    if (operator !== undefined){
-        operator = symbol;
+    if (!operator == false && !storageNum == false && !latestNum == false){
+         operate(operator,storageNum,latestNum);
+         console.log("or here");
     }
-    else if (operator === undefined && storageNum !== undefined) {
-        operate(operator,storageNum,latestNum);
-        operator = symbol;
+    else if (!operator && !storageNum == false) {
+        console.log("now here");
     }
+    else if (!operator == false) { 
+        console.log("meeh here");}
     else {
-        operator = symbol;
-    }
-    if (latestNum !== undefined) {
+        console.log(storageNum,latestNum);
         storageNum = latestNum;
-        latestNum = undefined;
+        latestNum = null;
+        console.log("its here");
     }
+    operator = symbol;
     input = "";
     display.textContent = input;
+    console.log(storageNum,latestNum);
 }
 
 function clearAll () {
     input = "";
-    latestNum = undefined;
-    storageNum = undefined;
-    operator = undefined;
+    latestNum = null;
+    storageNum = null;
+    operator = null;
     display.textContent = input;
 }
 
 function deleteOne() {
-    if (latestNum !== undefined) {
+    if (latestNum !== null) {
         let str = (`${latestNum}`);
         if (str.length >1) {
          str = str.split("")
@@ -163,7 +169,7 @@ function deleteOne() {
         console.log(latestNum);
         }
         else if (str.length == 1) {
-            latestNum = undefined;
+            latestNum = null;
         display.textContent = "";
         }
      }
