@@ -57,7 +57,7 @@ subtractBtn.addEventListener("click", () => assignOperators("-"));
 
 const resultBtn = document.querySelector("#result-btn");
 resultBtn.addEventListener("click", () => {
-    if( storageNum !== null && latestNum!== null) {
+    if( !storageNum == false && !latestNum == false) {
     operate(operator, storageNum, latestNum);
     console.log("here");
     }
@@ -158,7 +158,7 @@ function clearAll () {
 }
 
 function deleteOne() {
-    if (latestNum !== null) {
+    if (!latestNum == false) {
         let str = (`${latestNum}`);
         if (str.length >1) {
          str = str.split("")
@@ -166,10 +166,12 @@ function deleteOne() {
                   .join("");
         display.textContent = str;
         latestNum = Number(str);
+        input = `${latestNum}`;
         console.log(latestNum);
         }
         else if (str.length == 1) {
             latestNum = null;
+            input = "";
         display.textContent = "";
         }
      }
